@@ -1,5 +1,5 @@
-public class Medicamento implements AplicavelAoAnimal { // interface aplicada
-    private String codigo; // encapsulamento
+public class Medicamento implements AplicavelAoAnimal { // Interface aplicada
+    private String codigo; // Encapsulamento
     private String nome;
     private double preco;
     private int estoque;
@@ -8,7 +8,7 @@ public class Medicamento implements AplicavelAoAnimal { // interface aplicada
     private int idadeMaxima;
 
     public Medicamento(String codigo, String nome, double preco, int estoque,
-            List<String> especiesPermitidas, int idadeMinima, int idadeMaxima) {
+                       List<String> especiesPermitidas, int idadeMinima, int idadeMaxima) {
         this.codigo = codigo;
         this.nome = nome;
         this.preco = preco;
@@ -20,13 +20,31 @@ public class Medicamento implements AplicavelAoAnimal { // interface aplicada
 
     @Override
     public boolean aplicavel(FichaAnimal a) {
-        // verifica se a espécie e idade do animal são compatíveis e se há estoque
-        return especiesPermitidas.contains(a.especie) &&
-                a.idade >= idadeMinima && a.idade <= idadeMaxima &&
+        // Verifica se a espécie e idade do animal são compatíveis e se há estoque
+        return especiesPermitidas.contains(a.getEspecie()) &&
+                a.getIdade() >= idadeMinima && a.getIdade() <= idadeMaxima &&
                 estoque > 0;
     }
 
     @Override
+    public String getDescricao() {
+        return nome + " (Medicamento)";
+    }
+
+    @Override
+    public double getPreco() {
+        return preco;
+    }
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+}
+
     public String getDescricao() {
         return nome + " (Medicamento)";
     }
